@@ -121,10 +121,9 @@ export default function Home() {
 
           {/* Links */}
           <div className="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-4 text-sm text-[var(--color-text-faint)]">
-            <a href="https://docs.celo.org" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-celo-green)] transition-colors">Documentation</a>
-            <a href="https://github.com/cryptoflops/minipay-bot" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-celo-green)] transition-colors">GitHub</a>
-            <a href="#" className="hover:text-text transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-text transition-colors">Privacy Policy</a>
+            <a href="https://docs.minipay.xyz" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-celo-green)] transition-colors">MiniPay Docs</a>
+            <a href="https://talent.app/~/earn/celo-proof-of-ship" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-celo-green)] transition-colors">Celo Proof of Ship</a>
+            <a href="https://github.com/cryptoflops/MiniPayBot" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--color-celo-green)] transition-colors">GitHub</a>
           </div>
         </div>
       </footer>

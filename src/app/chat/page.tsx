@@ -1100,6 +1100,60 @@ export default function ChatPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Information & Legal */}
+              <div className="p-5 rounded-2xl border border-border bg-surface shadow-sm">
+                <h3 className="text-base font-bold text-text mb-4">Information & Legal</h3>
+                
+                <div className="flex flex-col gap-4 text-sm text-text-muted">
+                  <details className="group border-b border-border/50 pb-3">
+                    <summary className="flex cursor-pointer items-center justify-between font-semibold text-text marker:content-none">
+                      <span>Frequently Asked Questions (FAQ)</span>
+                      <span className="transition group-open:rotate-180">
+                        <ChevronDown size={16} />
+                      </span>
+                    </summary>
+                    <div className="text-xs text-text-muted mt-3 space-y-3">
+                      <div>
+                        <strong className="text-text block mb-1">How are fees paid?</strong>
+                        <p>We use Celo's fee abstraction. This means you pay network fees using stablecoins like cUSD or USDC. You do not need any CELO to make transactions.</p>
+                      </div>
+                      <div>
+                        <strong className="text-text block mb-1">What is the daily limit?</strong>
+                        <p>Unregistered wallets pay a fee of 0.1 stablecoin per usage. You can connect your X and email to unlock 5 free daily points. Additional points can be bought at 5 points for 0.5 stablecoin.</p>
+                      </div>
+                    </div>
+                  </details>
+
+                  <details className="group border-b border-border/50 pb-3">
+                    <summary className="flex cursor-pointer items-center justify-between font-semibold text-text marker:content-none">
+                      <span>Terms of Service</span>
+                      <span className="transition group-open:rotate-180">
+                        <ChevronDown size={16} />
+                      </span>
+                    </summary>
+                    <div className="text-xs text-text-muted mt-3 space-y-2">
+                      <p><strong>1. Acceptance of Terms:</strong> By using MiniPayBot, you agree to these Terms of Service. MiniPayBot is a decentralized tool that interacts with the Celo blockchain.</p>
+                      <p><strong>2. Non-Custodial:</strong> We do not hold your funds or your private keys. All transactions are securely executed directly from your wallet.</p>
+                      <p><strong>3. Liability:</strong> MiniPayBot is provided "as is" without any warranties. We are not responsible for any lost funds, failed transactions, or smart contract bugs.</p>
+                    </div>
+                  </details>
+
+                  <details className="group">
+                    <summary className="flex cursor-pointer items-center justify-between font-semibold text-text marker:content-none">
+                      <span>Privacy Policy</span>
+                      <span className="transition group-open:rotate-180">
+                        <ChevronDown size={16} />
+                      </span>
+                    </summary>
+                    <div className="text-xs text-text-muted mt-3 space-y-2">
+                      <p><strong>1. Data Collection:</strong> We only collect the minimal information necessary. If you choose to link your socials (email/X), they are securely encrypted and stored solely for verifying free daily points.</p>
+                      <p><strong>2. Blockchain Data:</strong> By nature, blockchain transactions are public. Your wallet address and transaction history are visible on the Celo ledger.</p>
+                      <p><strong>3. Third-Party Sharing:</strong> We do not sell or share your personal data with any third parties.</p>
+                    </div>
+                  </details>
+                </div>
+              </div>
             </div>
           )}
 
