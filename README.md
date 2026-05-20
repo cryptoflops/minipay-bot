@@ -18,7 +18,7 @@ Every interaction creates a **real, verifiable on-chain transaction** on Celo ma
 
 ## Live Demo
 
-**[Try MiniPayBot →](https://minipay-bot.pages.dev/chat)**
+**[Try MiniPayBot →](https://minipay-bot.vercel.app/chat)**
 
 ## Architecture
 
@@ -42,7 +42,7 @@ Celo Mainnet (Chain ID: 42220)
 
 | Contract | Address | Purpose |
 |----------|---------|---------|
-| AgentActionLog | `0x4D50AE9B8A62B39Cd73d6C849ac0c8d20E1600a1` | On-chain audit trail of agent actions |
+| AgentActionLog | `0xC30240D5ce3CD2AcB83968592AA5b9c8aE8Eb3cC` | On-chain audit trail of agent actions |
 | ERC-8004 Identity | `0x8004A169FB4a3325136EB29fA0ceB6D2e539a432` | Agent identity registry |
 | ERC-8004 Reputation | `0x8004BAa17C55a88189AE136b182e5fdA19dE9b63` | Agent reputation system |
 
