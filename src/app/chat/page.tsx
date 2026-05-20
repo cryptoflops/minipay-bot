@@ -30,9 +30,9 @@ import Link from "next/link";
 import { useMiniPay } from "@/hooks/useMiniPay";
 import { useFetchWithPayment } from "thirdweb/react";
 import { thirdwebClient } from "@/components/Providers";
-import { createWalletClient, createPublicClient, custom, http, parseEther } from "viem";
+import { createWalletClient, createPublicClient, custom, http, parseEther, parseUnits, erc20Abi } from "viem";
 import { celo } from "viem/chains";
-import { AGENT_ADDRESS } from "@/lib/constants";
+import { AGENT_ADDRESS, TOKENS } from "@/lib/constants";
 
 const SUGGESTIONS = [
   "Check my balance",
@@ -476,10 +476,14 @@ export default function ChatPage() {
         const [userAddr] = await client.getAddresses();
         if (!userAddr) throw new Error("No wallet connected");
 
-        const hash = await client.sendTransaction({
+        const amount = paymentReason === "buy_points" ? parseUnits("0.5", 6) : parseUnits("0.1", 6);
+        
+        const hash = await client.writeContract({
           account: userAddr,
-          to: AGENT_ADDRESS,
-          value: parseEther("1"), // 1 CELO
+          address: TOKENS.USDC.address,
+          abi: erc20Abi,
+          functionName: "transfer",
+          args: [AGENT_ADDRESS, amount],
         });
 
         await publicClient.waitForTransactionReceipt({ hash });
@@ -893,7 +897,7 @@ export default function ChatPage() {
                 {profile.email && profile.xAccount ? (
                   <div className="mt-4 flex flex-col sm:flex-row gap-3 items-center justify-between">
                     <p className="text-xs text-text-muted">
-                      You receive 5 free points daily. Need more? Buy 5 points for 1 CELO.
+                      You receive 5 free points daily. Need more? Buy 5 points for 0.5 USDC.
                     </p>
                     <button
                       onClick={() => {
@@ -979,7 +983,7 @@ export default function ChatPage() {
               <div className="p-5 rounded-2xl border border-border bg-surface shadow-sm">
                 <h3 className="text-base font-bold text-text mb-2">Social Connections</h3>
                 <p className="text-xs text-text-muted mb-6">
-                  Register your socials to unlock the 5 free daily points tier. Unregistered wallets pay a fee of 1 CELO per usage.
+                  Register your socials to unlock the 5 free daily points tier. Unregistered wallets pay a fee of 0.1 USDC per usage.
                 </p>
 
                 <form onSubmit={handleSaveProfile} className="flex flex-col gap-4">
@@ -1105,7 +1109,7 @@ export default function ChatPage() {
                   <div>
                     {profile.email && profile.xAccount 
                       ? `${profile.points} / 5 Daily Points` 
-                      : `${profile.dailyUnregisteredUsage} / 10 Daily Uses (1 CELO fee)`
+                      : `${profile.dailyUnregisteredUsage} / 10 Daily Uses (0.1 USDC fee)`
                     }
                   </div>
                 </div>
@@ -1206,10 +1210,10 @@ export default function ChatPage() {
 
                   <p className="text-sm text-text-muted leading-relaxed mb-6">
                     {paymentReason === "buy_points" 
-                      ? "You have run out of daily points. Pay 1 CELO to buy 5 additional agent calls?" 
+                      ? "You have run out of daily points. Pay 0.5 USDC to buy 5 additional agent calls?" 
                       : paymentReason === "daily_limit"
                       ? "You have reached your daily limit of 10 requests. Link your email and X account in the Account tab to receive 5 free daily points, or deposit funds to continue."
-                      : "Since your socials are not connected, sending this message requires a fee of 1 CELO. Would you like to proceed?"
+                      : "Since your socials are not connected, sending this message requires a fee of 0.1 USDC. Would you like to proceed?"
                     }
                   </p>
 
@@ -1226,7 +1230,7 @@ export default function ChatPage() {
                             <span>Confirming on Celo...</span>
                           </>
                         ) : (
-                          <span>Pay 1 CELO</span>
+                          <span>Pay {paymentReason === "buy_points" ? "0.5 USDC" : "0.1 USDC"}</span>
                         )}
                       </button>
                     )}
