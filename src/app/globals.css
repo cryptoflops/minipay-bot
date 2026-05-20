@@ -1,26 +1,168 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Fonts */
+  --font-display: var(--font-dm-serif);
+  --font-body: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* Primary */
+  --color-celo-green: #07955F;
+  --color-celo-green-hover: #056E46;
+  --color-celo-green-dark: #044D30;
+  --color-celo-gold: #FCFF52;
+  --color-celo-gold-muted: #C9CC30;
+
+  /* Surfaces & Backgrounds */
+  --color-bg: var(--color-bg-val);
+  --color-surface: var(--color-surface-val);
+  --color-surface-2: var(--color-surface-2-val);
+  --color-surface-offset: var(--color-surface-offset-val);
+  --color-divider: var(--color-divider-val);
+  --color-border: var(--color-border-val);
+
+  /* Text */
+  --color-text: var(--color-text-val);
+  --color-text-muted: var(--color-text-muted-val);
+  --color-text-faint: var(--color-text-faint-val);
+  --color-text-inverse: var(--color-text-inverse-val);
+  
+  /* Radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Light Mode */
+    --color-bg-val: #F5F7F4;
+    --color-surface-val: #FFFFFF;
+    --color-surface-2-val: #F0F4F1;
+    --color-surface-offset-val: #E6EDE8;
+    --color-divider-val: #D4DDD6;
+    --color-border-val: color-mix(in oklch, #07955F 15%, transparent);
+
+    --color-text-val: #0F1F14;
+    --color-text-muted-val: #4A6651;
+    --color-text-faint-val: #8CA391;
+    --color-text-inverse-val: #F5F7F4;
+  }
+
+  /* Dark mode overrides (applied via class "dark" on HTML) */
+  .dark {
+    --color-bg-val: #0A1410;
+    --color-surface-val: #0F1F14;
+    --color-surface-2-val: #162A1C;
+    --color-surface-offset-val: #1D3324;
+    --color-divider-val: #253D2B;
+    --color-border-val: color-mix(in oklch, #10C67A 25%, transparent);
+
+    --color-text-val: #D4F0DB;
+    --color-text-muted-val: #7DB88A;
+    --color-text-faint-val: #4A7A55;
+    --color-text-inverse-val: #0F1F14;
+
+    /* Re-map some absolute colors for dark contrast */
+    --color-celo-green: #10C67A;
+    --color-celo-green-hover: #0DA366;
   }
 }
 
+/* Base styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-offset);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border);
+}
+
+/* Prose overrides for markdown in chat */
+.prose p {
+  margin-bottom: 0.5em;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  background: var(--color-surface-offset);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+}
+
+.prose a {
+  color: var(--color-celo-green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose a:hover {
+  color: var(--color-celo-green-hover);
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0 }
+  100% { background-position:  200% 0 }
+}
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-offset) 25%,
+    var(--color-surface-2) 50%,
+    var(--color-surface-offset) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Global Focus Styles (Celo Yellow Stroke) */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-celo-gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+  transition: outline-offset 150ms ease, box-shadow 150ms ease;
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--color-celo-gold) 15%, transparent);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  border-radius: inherit;
+}
+
+@layer utilities {
+  .bg-surface { background-color: var(--color-surface); }
+  .bg-bg { background-color: var(--color-bg); }
+  .text-text { color: var(--color-text); }
+  .text-text-muted { color: var(--color-text-muted); }
+  .border-border { border-color: var(--color-border); }
 }
