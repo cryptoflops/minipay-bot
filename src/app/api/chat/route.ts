@@ -7,7 +7,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
 
 const gaia = createOpenAI({
-  baseURL: process.env.GAIA_BASE_URL || "https://llama.us.gaianet.network/v1",
+  baseURL: process.env.GAIA_BASE_URL || "https://0x07813ec0c4bb08ceeb1b99ddf021af4682f9459c.gaia.domains/v1",
   apiKey: process.env.GAIA_API_KEY || "empty",
 });
 import { streamText, convertToModelMessages, stepCountIs } from "ai";
