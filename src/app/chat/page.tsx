@@ -349,6 +349,7 @@ export default function ChatPage() {
   const [paymentReason, setPaymentReason] = useState<"unregistered_fee" | "buy_points" | "daily_limit" | null>(null);
   const [isPaying, setIsPaying] = useState(false);
   const [pendingMessage, setPendingMessage] = useState<string | null>(null);
+  const [showClearConfirmModal, setShowClearConfirmModal] = useState(false);
 
   const publicClient = createPublicClient({
     chain: celo,
@@ -582,10 +583,13 @@ export default function ChatPage() {
   };
 
   const handleClearAllHistory = () => {
-    if (confirm("Are you sure you want to clear your chat history?")) {
-      setMessages([]);
-      localStorage.removeItem("minipay_bot_chat_history");
-    }
+    setShowClearConfirmModal(true);
+  };
+
+  const confirmClearAllHistory = () => {
+    setMessages([]);
+    localStorage.removeItem("minipay_bot_chat_history");
+    setShowClearConfirmModal(false);
   };
 
   useEffect(() => {
@@ -1332,6 +1336,47 @@ export default function ChatPage() {
                         </a>
                       </>
                     )}
+                  </div>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
+
+          {/* Clear History Confirmation Modal */}
+          <AnimatePresence>
+            {showClearConfirmModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  className="w-full max-w-sm bg-surface border border-border rounded-2xl p-6 shadow-2xl relative overflow-hidden"
+                >
+                  <div className="flex items-center gap-3 text-red-500 font-bold mb-4">
+                    <Trash2 className="flex-shrink-0" size={24} />
+                    <h3 className="text-lg font-bold text-text">
+                      Clear Chat History
+                    </h3>
+                  </div>
+
+                  <p className="text-sm text-text-muted leading-relaxed mb-6">
+                    Are you sure you want to delete all messages? This action cannot be undone.
+                  </p>
+
+                  <div className="flex flex-col gap-3">
+                    <button
+                      onClick={confirmClearAllHistory}
+                      className="w-full py-3 rounded-full bg-red-500 text-white font-bold text-sm hover:bg-red-600 transition-colors flex items-center justify-center gap-2 shadow-[0_4px_15px_rgba(239,68,68,0.2)]"
+                    >
+                      Delete History
+                    </button>
+
+                    <button
+                      onClick={() => setShowClearConfirmModal(false)}
+                      className="w-full py-2.5 rounded-full bg-[var(--color-surface-offset)] border border-border text-text hover:bg-[var(--color-surface-2)] transition-colors text-xs font-semibold"
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </motion.div>
               </div>

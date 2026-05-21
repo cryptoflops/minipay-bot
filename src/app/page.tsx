@@ -105,7 +105,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="w-full border-t border-border py-12 px-6 bg-surface">
+      <footer className="w-full border-t border-border py-12 px-6 bg-surface relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
           {/* Brand & Badges */}
           <div className="flex flex-col items-center md:items-start gap-4">

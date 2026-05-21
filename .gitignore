@@ -47,3 +47,6 @@ next-env.d.ts
 /contracts/broadcast/
 /contracts/broadcast-multi/
 /contracts/reports/
+
+# self agent id sessions
+/.self/

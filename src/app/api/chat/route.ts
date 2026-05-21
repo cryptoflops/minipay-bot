@@ -8,8 +8,6 @@ import { createThirdwebClient } from "thirdweb";
 import { celo } from "thirdweb/chains";
 import { getAgentAddress } from "@/agent/celo-client";
 
-export const runtime = "edge";
-
 // ElizaOS remote server config
 const ELIZA_BASE_URL = process.env.ELIZA_BASE_URL || "http://18.195.127.114:3000";
 const ELIZA_AGENT_ID = process.env.ELIZA_AGENT_ID || "7295663b-da7d-0086-8480-f5f429cb5d26";
