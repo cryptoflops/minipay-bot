@@ -75,15 +75,18 @@ async function sendMessageToSession(sessionId: string, content: string): Promise
 
   const data = await res.json();
 
-  // The response shape from ElizaOS sessions/messages with transport=http
-  // is typically { messages: [ { content: { text: "..." } } ] } or similar
+  // Primary path: ElizaOS returns { success, agentResponse: { text: "..." } }
+  if (data.agentResponse?.text) {
+    return data.agentResponse.text;
+  }
+
+  // Fallback: array of messages
   if (data.messages && Array.isArray(data.messages) && data.messages.length > 0) {
-    // Return the last agent message text
     const lastMsg = data.messages[data.messages.length - 1];
     return lastMsg?.content?.text || lastMsg?.content || JSON.stringify(lastMsg);
   }
 
-  // Fallback: try to find text in various response shapes
+  // Other fallbacks
   if (data.text) return data.text;
   if (data.content?.text) return data.content.text;
   if (data.content) return typeof data.content === "string" ? data.content : JSON.stringify(data.content);
