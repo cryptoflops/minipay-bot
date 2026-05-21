@@ -29,6 +29,9 @@ export const metadata: Metadata = {
       "Chat with an AI agent that executes real Celo transactions. Built with ERC-8004, fee abstraction, and AI SDK.",
     type: "website",
   },
+  other: {
+    "talentapp:project_verification": "78a9fec0ab513c29992836f9de40eccd043fcf80915aa26398bf805d5b127363417c4e6332aa8068d4dbc9d4d2e0a018cb5124615a090a64ff341c4e7e652d40",
+  },
 };
 
 export default function RootLayout({
