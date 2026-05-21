@@ -4,10 +4,11 @@
  * Protected by x402 micropayments via Thirdweb.
  */
 
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { createOpenAI } from "@ai-sdk/openai";
 
-const google = createGoogleGenerativeAI({
-  apiKey: process.env.GEMINI_API_KEY,
+const gaia = createOpenAI({
+  baseURL: process.env.GAIA_BASE_URL || "https://llama.us.gaianet.network/v1",
+  apiKey: process.env.GAIA_API_KEY || "empty",
 });
 import { streamText, convertToModelMessages, stepCountIs } from "ai";
 import { SYSTEM_PROMPT } from "@/agent/system-prompt";
@@ -78,7 +79,7 @@ export async function POST(req: Request) {
       : SYSTEM_PROMPT;
 
     const result = streamText({
-      model: google("gemini-2.5-flash"),
+      model: gaia(process.env.GAIA_MODEL || "llama"),
       system: systemPrompt,
       messages: modelMessages,
       tools: getCeloTools(userAddress),
