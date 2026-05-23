@@ -56,12 +56,12 @@ async function createSession(userAddress: string): Promise<string> {
 /**
  * Sends a message to an existing ElizaOS session and returns the agent response text.
  */
-async function sendMessageToSession(sessionId: string, content: string): Promise<string> {
+async function sendMessageToSession(sessionId: string, content: string, userAddress: string): Promise<string> {
   const res = await fetch(`${ELIZA_BASE_URL}/api/messaging/sessions/${sessionId}/messages`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      content,
+      content: `${content}\n\n[User Address: ${userAddress}]`,
       transport: "http",
     }),
   });
@@ -74,8 +74,13 @@ async function sendMessageToSession(sessionId: string, content: string): Promise
   const data = await res.json();
 
   // Primary path: ElizaOS returns { success, agentResponse: { text: "..." } }
-  if (data.agentResponse?.text) {
-    return data.agentResponse.text;
+  if (data.agentResponse) {
+    if (data.agentResponse.actionCallbacks?.text) {
+      return data.agentResponse.actionCallbacks.text;
+    }
+    if (data.agentResponse.text) {
+      return data.agentResponse.text;
+    }
   }
 
   // Fallback: array of messages
@@ -208,7 +213,7 @@ export async function POST(req: Request) {
     console.log("Using ElizaOS session:", sessionId);
 
     // Send the message to ElizaOS and get the response
-    const agentResponse = await sendMessageToSession(sessionId, userText);
+    const agentResponse = await sendMessageToSession(sessionId, userText, addr);
     console.log("Agent response received, length:", agentResponse.length);
 
     // Return in Vercel AI SDK UIMessageStreamResponse format

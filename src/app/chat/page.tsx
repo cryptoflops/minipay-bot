@@ -311,7 +311,6 @@ export default function ChatPage() {
   const { messages, sendMessage, status, error, regenerate, setMessages } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
-      fetch: fetchWithPayment as any,
       body: () => ({
         userAddress: addressRef.current,
       }),
@@ -500,9 +499,10 @@ export default function ChatPage() {
 
       // Handle Success
       if (paymentReason === "buy_points") {
+        const addedPoints = pendingMessage ? 4 : 5;
         const updatedProfile = {
           ...profile,
-          points: profile.points + 5,
+          points: profile.points + addedPoints,
         };
         setProfile(updatedProfile);
         localStorage.setItem("minipay_bot_user_profile", JSON.stringify(updatedProfile));
@@ -514,6 +514,7 @@ export default function ChatPage() {
         if (pendingMessage) {
           sendMessage({ text: pendingMessage });
           setPendingMessage(null);
+          setInput("");
         }
       } else if (paymentReason === "unregistered_fee") {
         const updatedProfile = {
@@ -530,6 +531,7 @@ export default function ChatPage() {
         if (pendingMessage) {
           sendMessage({ text: pendingMessage });
           setPendingMessage(null);
+          setInput("");
         }
       }
     } catch (err: any) {
@@ -783,11 +785,15 @@ export default function ChatPage() {
                             `}
                           >
                             {/* Render text parts */}
-                            {m.parts?.filter(p => p.type === 'text').map((part: any, i) => (
+                            {m.parts && m.parts.length > 0 ? m.parts.filter(p => p.type === 'text').map((part: any, i) => (
                               <div key={i} className={`prose ${isUser ? 'prose-invert' : 'prose-p:text-text'} max-w-none`}>
                                 <ReactMarkdown>{part.text}</ReactMarkdown>
                               </div>
-                            ))}
+                            )) : (
+                              <div className={`prose ${isUser ? 'prose-invert' : 'prose-p:text-text'} max-w-none`}>
+                                <ReactMarkdown>{(m as any).content}</ReactMarkdown>
+                              </div>
+                            )}
                             
                             {/* Streaming indicator */}
                             {m.id === messages[messages.length - 1]?.id && isLoading && !isUser && (

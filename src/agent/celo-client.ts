@@ -84,14 +84,25 @@ export async function transferStablecoin(
   const token = getTokenConfig(symbol);
   const walletClient = getAgentWalletClient();
   const parsedAmount = parseUnits(amount, token.decimals);
+  const agentAddress = getAgentAddress();
+
+  // Check cUSD balance to decide on feeCurrency
+  const cusdBalance = await publicClient.readContract({
+    address: TOKENS.CUSD.address,
+    abi: erc20Abi,
+    functionName: "balanceOf",
+    args: [agentAddress],
+  });
+
+  const feeCurrency = cusdBalance < 10000000000000000n ? undefined : DEFAULT_FEE_CURRENCY;
 
   const hash = await walletClient.writeContract({
     address: token.address,
     abi: erc20Abi,
     functionName: "transfer",
     args: [to, parsedAmount],
-    // Fee abstraction: pay gas in stablecoins
-    feeCurrency: DEFAULT_FEE_CURRENCY,
+    // Fee abstraction: pay gas in stablecoins if available, fallback to CELO
+    feeCurrency,
   } as any); // feeCurrency is Celo-specific, not in standard viem types
 
   const receipt = await publicClient.waitForTransactionReceipt({ hash });
@@ -141,13 +152,25 @@ export async function logAgentAction(
   }
 
   try {
+    const agentAddress = getAgentAddress();
+    
+    // Check cUSD balance to decide on feeCurrency
+    const cusdBalance = await publicClient.readContract({
+      address: TOKENS.CUSD.address,
+      abi: erc20Abi,
+      functionName: "balanceOf",
+      args: [agentAddress],
+    }).catch(() => 0n);
+
+    const feeCurrency = cusdBalance < 10000000000000000n ? undefined : DEFAULT_FEE_CURRENCY;
+
     const walletClient = getAgentWalletClient();
     const hash = await walletClient.writeContract({
       address: AGENT_ACTION_LOG_ADDRESS,
       abi: AGENT_ACTION_LOG_ABI,
       functionName: "logAction",
       args: [user, actionType, txRef as `0x${string}`],
-      feeCurrency: DEFAULT_FEE_CURRENCY,
+      feeCurrency,
     } as any);
 
     console.log(`[ActionLog] Logged "${actionType}" for ${user}: ${hash}`);
