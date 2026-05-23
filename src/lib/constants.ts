@@ -15,7 +15,7 @@ export const TOKENS = {
     symbol: "cUSD",
     name: "Celo Dollar (USDm)",
     decimals: 18,
-    feeAdapter: "0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e" as `0x${string}`,
+    feeAdapter: "0x765DE816845861e75A25fCA122bb6898B8B1282a" as `0x${string}`,
   },
   USDC: {
     address: "0xcebA9300f2b948710d2653dD7B07f33A8B32118C" as `0x${string}`,
