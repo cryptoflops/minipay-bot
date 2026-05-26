@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-05-24
+## [Unreleased] - 2026-05-26
 
 ### Changed
-- Improved loading state indicators
-- Added input validation for amounts
+- Enhanced mobile responsiveness
+- Added retry logic for failed transactions
 
 ### Fixed
-- Resolved race condition in wallet sync
+- Fixed decimal formatting for small amounts
