@@ -37,7 +37,10 @@ async function createSession(userAddress: string): Promise<string> {
 
   const res = await fetch(`${ELIZA_BASE_URL}/api/messaging/sessions`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      ...(process.env.ELIZA_SERVER_AUTH_TOKEN ? { "Authorization": `Bearer ${process.env.ELIZA_SERVER_AUTH_TOKEN}` } : {})
+    },
     body: JSON.stringify({
       agentId: ELIZA_AGENT_ID,
       userId,
@@ -59,7 +62,10 @@ async function createSession(userAddress: string): Promise<string> {
 async function sendMessageToSession(sessionId: string, content: string, userAddress: string): Promise<string> {
   const res = await fetch(`${ELIZA_BASE_URL}/api/messaging/sessions/${sessionId}/messages`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { 
+      "Content-Type": "application/json",
+      ...(process.env.ELIZA_SERVER_AUTH_TOKEN ? { "Authorization": `Bearer ${process.env.ELIZA_SERVER_AUTH_TOKEN}` } : {})
+    },
     body: JSON.stringify({
       content: `${content}\n\n[User Address: ${userAddress}]`,
       transport: "http",
@@ -122,7 +128,11 @@ async function getOrCreateSession(userAddress: string): Promise<string> {
   if (existing) {
     // Verify the session is still alive
     try {
-      const checkRes = await fetch(`${ELIZA_BASE_URL}/api/messaging/sessions/${existing}`);
+      const checkRes = await fetch(`${ELIZA_BASE_URL}/api/messaging/sessions/${existing}`, {
+        headers: {
+          ...(process.env.ELIZA_SERVER_AUTH_TOKEN ? { "Authorization": `Bearer ${process.env.ELIZA_SERVER_AUTH_TOKEN}` } : {})
+        }
+      });
       if (checkRes.ok) {
         return existing;
       }
