@@ -1,7 +1,6 @@
 {
   "name": "minipay-bot",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,17 +12,17 @@
     "@ai-sdk/react": "^3.0.187",
     "@selfxyz/agent-sdk": "^0.2.1",
     "@tanstack/react-query": "^5.100.11",
-    "ai": "^6.0.185",
+    "ai": "6.0.185",
     "framer-motion": "^12.39.0",
     "lucide-react": "^1.16.0",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-markdown": "^10.1.0",
+    "react-markdown": "10.1.0",
     "remark-gfm": "^4.0.1",
     "thirdweb": "^5.120.0",
     "three": "^0.184.0",
-    "viem": "^2.49.3",
+    "viem": "2.49.3",
     "wagmi": "^3.6.15",
     "zod": "^4.4.3"
   },
@@ -33,11 +32,11 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.184.1",
-    "clsx": "^2.1.1",
+    "clsx": "2.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "4",
     "typescript": "^5"
   }
 }
