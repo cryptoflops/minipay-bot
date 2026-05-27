@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-05-26
+## [Unreleased] - 2026-05-27
 
 ### Changed
-- Enhanced mobile responsiveness
-- Added retry logic for failed transactions
+- Refactored wallet connection flow
+- Added input validation for amounts
 
 ### Fixed
-- Fixed decimal formatting for small amounts
+- Corrected gas estimation for Celo L2
