@@ -7,6 +7,7 @@ import { settlePayment, facilitator } from "thirdweb/x402";
 import { createThirdwebClient } from "thirdweb";
 import { celo } from "thirdweb/chains";
 import { getAgentAddress } from "@/agent/celo-client";
+import { getSelfAgent, assertSelfAgentRegistered } from "@/lib/self-agent";
 
 // ElizaOS remote server config
 const ELIZA_BASE_URL = process.env.ELIZA_BASE_URL || "http://18.195.127.114:3000";
@@ -35,16 +36,26 @@ async function createSession(userAddress: string): Promise<string> {
   // Use the user address to derive a deterministic UUID-like userId
   const userId = addressToUuid(userAddress);
 
+  const body = JSON.stringify({
+    agentId: ELIZA_AGENT_ID,
+    userId,
+  });
+
+  const agent = getSelfAgent();
+  const signedHeaders = await agent.signRequest(
+    "POST",
+    `${ELIZA_BASE_URL}/api/messaging/sessions`,
+    body
+  ).catch(() => ({}));
+
   const res = await fetch(`${ELIZA_BASE_URL}/api/messaging/sessions`, {
     method: "POST",
     headers: { 
       "Content-Type": "application/json",
+      ...signedHeaders,
       ...(process.env.ELIZA_SERVER_AUTH_TOKEN ? { "Authorization": `Bearer ${process.env.ELIZA_SERVER_AUTH_TOKEN}` } : {})
     },
-    body: JSON.stringify({
-      agentId: ELIZA_AGENT_ID,
-      userId,
-    }),
+    body,
   });
 
   if (!res.ok) {
@@ -60,16 +71,26 @@ async function createSession(userAddress: string): Promise<string> {
  * Sends a message to an existing ElizaOS session and returns the agent response text.
  */
 async function sendMessageToSession(sessionId: string, content: string, userAddress: string): Promise<string> {
+  const body = JSON.stringify({
+    content: `${content}\n\n[User Address: ${userAddress}]`,
+    transport: "http",
+  });
+
+  const agent = getSelfAgent();
+  const signedHeaders = await agent.signRequest(
+    "POST",
+    `${ELIZA_BASE_URL}/api/messaging/sessions/${sessionId}/messages`,
+    body
+  ).catch(() => ({}));
+
   const res = await fetch(`${ELIZA_BASE_URL}/api/messaging/sessions/${sessionId}/messages`, {
     method: "POST",
     headers: { 
       "Content-Type": "application/json",
+      ...signedHeaders,
       ...(process.env.ELIZA_SERVER_AUTH_TOKEN ? { "Authorization": `Bearer ${process.env.ELIZA_SERVER_AUTH_TOKEN}` } : {})
     },
-    body: JSON.stringify({
-      content: `${content}\n\n[User Address: ${userAddress}]`,
-      transport: "http",
-    }),
+    body,
   });
 
   if (!res.ok) {
@@ -148,6 +169,9 @@ async function getOrCreateSession(userAddress: string): Promise<string> {
 }
 
 export async function POST(req: Request) {
+  // --- Self Agent ID: verify agent is registered on-chain ---
+  assertSelfAgentRegistered().catch(console.error);
+
   const hasThirdwebKey = 
     process.env.THIRDWEB_SECRET_KEY && 
     process.env.THIRDWEB_SECRET_KEY !== "0000000000000000000000000000000000000000000000000000000000000000";
