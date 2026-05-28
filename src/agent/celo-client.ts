@@ -103,6 +103,7 @@ export async function transferStablecoin(
     args: [to, parsedAmount],
     // Fee abstraction: pay gas in stablecoins if available, fallback to CELO
     feeCurrency,
+    maxFeePerGas: parseUnits("10", 9), // Cap gas at 10 Gwei to prevent draining funds during spikes
   } as any); // feeCurrency is Celo-specific, not in standard viem types
 
   const receipt = await publicClient.waitForTransactionReceipt({ hash });
@@ -171,6 +172,7 @@ export async function logAgentAction(
       functionName: "logAction",
       args: [user, actionType, txRef as `0x${string}`],
       feeCurrency,
+      maxFeePerGas: parseUnits("10", 9), // Cap gas at 10 Gwei to prevent draining funds
     } as any);
 
     console.log(`[ActionLog] Logged "${actionType}" for ${user}: ${hash}`);
