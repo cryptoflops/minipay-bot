@@ -3,8 +3,8 @@
 ## [Unreleased] - 2026-05-28
 
 ### Changed
-- Enhanced mobile responsiveness
-- Added retry logic for failed transactions
+- Improved loading state indicators
+- Added input validation for amounts
 
 ### Fixed
-- Fixed edge case in balance display
+- Resolved race condition in wallet sync
