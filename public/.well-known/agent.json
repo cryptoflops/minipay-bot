@@ -1,17 +1,22 @@
 {
-  "type": "Agent",
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
   "name": "MiniPayBot",
   "description": "AI-powered payment assistant for MiniPay on Celo. Send, receive, and query stablecoin balances via natural language.",
   "image": "https://minipay-bot.vercel.app/logo.png",
-  "endpoints": [
+  "services": [
     {
-      "type": "a2a",
-      "url": "https://minipay-bot.vercel.app/.well-known/agent.json"
+      "name": "A2A",
+      "endpoint": "https://minipay-bot.vercel.app/api/agent-card"
     },
     {
-      "type": "wallet",
-      "address": "0x207d064161cd85351be21eca570807ed8bcee0ad",
-      "chainId": 42220
+      "name": "wallet",
+      "endpoint": "0x207d064161cd85351be21eca570807ed8bcee0ad"
+    }
+  ],
+  "registrations": [
+    {
+      "agentRegistry": "eip155:42220:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+      "agentId": 9185
     }
   ],
   "supportedTrust": ["reputation"]
