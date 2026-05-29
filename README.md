@@ -88,4 +88,3 @@ This project is submitted to the **AI Powered Apps & Agents** track in [Celo Pro
 ## License
 
 MIT
-
