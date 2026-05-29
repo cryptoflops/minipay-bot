@@ -5,3 +5,4 @@
 - Investigated rendering jitter on mobile layout when switching between MiniPay and desktop contexts.
 - Reviewed component tree performance after adding MiniPayBar, no measurable regression.
 - The useMiniPay hook detects isMiniPay synchronously, but some devices inject the provider async. Added 500ms fallback.
+- Checked backward compatibility with older Celo RPC responses. The L2 migration changed some receipt fields.
