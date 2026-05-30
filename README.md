@@ -81,7 +81,7 @@ Visit `http://localhost:3000/chat` to start chatting with the bot.
 
 This project is submitted to the **AI Powered Apps & Agents** track in [Celo Proof-of-Ship](https://talent.app/~/earn/celo-proof-of-ship).
 
-- **KarmaGAP**: [MiniPayBot on KarmaGAP](https://gap.karmahq.xyz)
+- **KarmaGAP**: [MiniPayBot on KarmaGAP](https://gap.karmahq.xyz/project/minipaybot)
 - **Track**: AI Powered Apps & Agents
 - **One-liner**: AI financial assistant for Celo MiniPay -- chat to send stablecoins, check balances, or manage savings
 
