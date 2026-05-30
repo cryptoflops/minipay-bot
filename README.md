@@ -16,7 +16,7 @@ MiniPayBot is an AI-powered financial assistant that operates on the Celo blockc
 
 Every interaction creates a **real, verifiable on-chain transaction** on Celo mainnet. The agent pays network fees in stablecoins via Celo's fee abstraction, so it never needs native CELO for gas.
 
-## Live Demo
+## Live Beta
 
 **[Try MiniPayBot →](https://minipay-bot.vercel.app/chat)**
 
