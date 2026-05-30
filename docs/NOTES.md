@@ -1,6 +1,6 @@
 # minipay-bot Deployment Notes
 
-Last verified: 2026-05-29T10:39:28.109Z
+Last verified: 2026-05-30T03:14:51.322Z
 
 ## Prerequisites
 - Node.js >= 18
@@ -12,4 +12,4 @@ npm install
 npm run dev
 ```
 
-> Build hash: cbrob9i8
+> Build hash: yc0dbem1
