@@ -3,8 +3,8 @@
 ## [Unreleased] - 2026-06-19
 
 ### Changed
-- Improved error handling in contract interactions
-- Added retry logic for failed transactions
+- Optimized RPC batch requests
+- Cleaned up unused imports
 
 ### Fixed
-- Fixed decimal formatting for small amounts
+- Resolved race condition in wallet sync
