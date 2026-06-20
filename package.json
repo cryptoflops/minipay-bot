@@ -1,5 +1,5 @@
 {
-  "name": "minipay-bot",
+  "name": "@cryptoflops/minipay-bot",
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev",
@@ -38,5 +38,8 @@
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "4",
     "typescript": "^5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
