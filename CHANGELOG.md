@@ -4,7 +4,7 @@
 
 ### Changed
 - Improved error handling in contract interactions
-- Cleaned up unused imports
+- Added retry logic for failed transactions
 
 ### Fixed
-- Fixed edge case in balance display
+- Fixed decimal formatting for small amounts
