@@ -7,4 +7,4 @@
 - Cleaned up unused imports
 
 ### Fixed
-- Corrected gas estimation for Celo L2
+- Fixed edge case in balance display
