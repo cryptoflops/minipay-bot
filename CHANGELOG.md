@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-06-23
+## [Unreleased] - 2026-06-24
 
 ### Changed
-- Updated dependencies to latest stable
-- Added retry logic for failed transactions
+- Refactored wallet connection flow
+- Reduced bundle size by tree-shaking
 
 ### Fixed
-- Resolved race condition in wallet sync
+- Corrected gas estimation for Celo L2
