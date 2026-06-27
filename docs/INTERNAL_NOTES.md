@@ -7,3 +7,4 @@
 - The useMiniPay hook detects isMiniPay synchronously, but some devices inject the provider async. Added 500ms fallback.
 - Checked backward compatibility with older Celo RPC responses. The L2 migration changed some receipt fields.
 - Checked backward compatibility with older Celo RPC responses. The L2 migration changed some receipt fields.
+- Noticed the useBalance hook refetches on every block. Consider adding staleTime to reduce RPC load.
