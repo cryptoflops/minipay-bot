@@ -3,8 +3,8 @@
 ## [Unreleased] - 2026-06-28
 
 ### Changed
-- Optimized RPC batch requests
+- Refactored wallet connection flow
 - Cleaned up unused imports
 
 ### Fixed
-- Corrected gas estimation for Celo L2
+- Fixed decimal formatting for small amounts
