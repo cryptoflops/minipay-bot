@@ -3,8 +3,8 @@
 ## [Unreleased] - 2026-06-28
 
 ### Changed
-- Enhanced mobile responsiveness
-- Added input validation for amounts
+- Optimized RPC batch requests
+- Cleaned up unused imports
 
 ### Fixed
-- Resolved race condition in wallet sync
+- Corrected gas estimation for Celo L2
