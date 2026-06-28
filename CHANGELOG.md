@@ -3,8 +3,8 @@
 ## [Unreleased] - 2026-06-28
 
 ### Changed
-- Updated dependencies to latest stable
-- Cleaned up unused imports
+- Enhanced mobile responsiveness
+- Added input validation for amounts
 
 ### Fixed
-- Fixed edge case in balance display
+- Resolved race condition in wallet sync
