@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-06-30
+## [Unreleased] - 2026-07-01
 
 ### Changed
-- Enhanced mobile responsiveness
-- Reduced bundle size by tree-shaking
+- Updated dependencies to latest stable
+- Added retry logic for failed transactions
 
 ### Fixed
-- Fixed decimal formatting for small amounts
+- Resolved race condition in wallet sync
