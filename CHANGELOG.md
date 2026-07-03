@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-07-01
+## [Unreleased] - 2026-07-03
 
 ### Changed
-- Updated dependencies to latest stable
-- Added retry logic for failed transactions
+- Refactored wallet connection flow
+- Added input validation for amounts
 
 ### Fixed
-- Resolved race condition in wallet sync
+- Fixed edge case in balance display
