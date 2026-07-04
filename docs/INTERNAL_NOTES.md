@@ -11,3 +11,4 @@
 - The escrow contract refund timeout (7 days) seems appropriate for freelance gig markets.
 - Tested cUSD approve + deposit flow on Celo mainnet. Gas estimates stable at ~45k per tx.
 - Reviewed gas price oracle behavior on Celo. Since the Gingerbread upgrade, EIP-1559 is the default.
+- Reviewed component tree performance after adding MiniPayBar, no measurable regression.
