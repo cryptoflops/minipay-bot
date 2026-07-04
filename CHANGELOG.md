@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-07-03
+## [Unreleased] - 2026-07-04
 
 ### Changed
-- Refactored wallet connection flow
+- Improved error handling in contract interactions
 - Added input validation for amounts
 
 ### Fixed
-- Fixed edge case in balance display
+- Resolved race condition in wallet sync
