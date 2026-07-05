@@ -3,8 +3,8 @@
 ## [Unreleased] - 2026-07-05
 
 ### Changed
-- Updated dependencies to latest stable
-- Reduced bundle size by tree-shaking
+- Improved error handling in contract interactions
+- Added input validation for amounts
 
 ### Fixed
-- Corrected gas estimation for Celo L2
+- Fixed edge case in balance display
