@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-07-05
+## [Unreleased] - 2026-07-06
 
 ### Changed
-- Improved error handling in contract interactions
-- Added input validation for amounts
+- Optimized RPC batch requests
+- Added retry logic for failed transactions
 
 ### Fixed
-- Fixed edge case in balance display
+- Resolved race condition in wallet sync
