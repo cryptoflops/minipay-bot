@@ -1,10 +1,10 @@
 # Changelog
 
-## [Unreleased] - 2026-07-06
+## [Unreleased] - 2026-07-08
 
 ### Changed
-- Optimized RPC batch requests
-- Added retry logic for failed transactions
+- Improved loading state indicators
+- Added input validation for amounts
 
 ### Fixed
 - Resolved race condition in wallet sync
