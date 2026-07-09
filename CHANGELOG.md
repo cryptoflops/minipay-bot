@@ -4,7 +4,7 @@
 
 ### Changed
 - Improved error handling in contract interactions
-- Added input validation for amounts
+- Added retry logic for failed transactions
 
 ### Fixed
-- Corrected gas estimation for Celo L2
+- Fixed decimal formatting for small amounts
