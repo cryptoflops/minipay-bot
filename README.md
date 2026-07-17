@@ -18,7 +18,7 @@ Every interaction creates a **real, verifiable on-chain transaction** on Celo ma
 
 ## Live Beta
 
-**[Try MiniPayBot →](https://minipay-bot.vercel.app/chat)**
+**[Try MiniPayBot →](https://minipay-bot.pages.dev/chat)**
 
 ## Architecture
 
