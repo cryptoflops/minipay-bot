@@ -1,10 +1,9 @@
 # Changelog
 
-## [Unreleased] - 2026-07-14
+## [Unreleased] - 2026-07-24
 
 ### Changed
-- Optimized RPC batch requests
-- Added input validation for amounts
+- Refactored wallet connection flow for MiniPay
 
 ### Fixed
-- Corrected gas estimation for Celo L2
+- Resolved race condition in wallet state sync
