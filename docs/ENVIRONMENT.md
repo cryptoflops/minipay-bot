@@ -1,6 +1,6 @@
 # minipay-bot Environment Guide
 
-Generated: 2026-07-25T20:55:04.419Z
+Generated: 2026-07-26T03:22:02.206Z
 
 ## Requirements
 - Node.js >= 18
@@ -10,4 +10,4 @@ Generated: 2026-07-25T20:55:04.419Z
 ## Validation
 Ensure `.env` matches `.env.example` before deployment.
 
-Build: grilpibo
+Build: t9q9cdm0
