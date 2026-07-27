@@ -1,9 +1,9 @@
 # Changelog
 
-## [Unreleased] - 2026-07-26
+## [Unreleased] - 2026-07-27
 
 ### Changed
-- Enhanced mobile responsiveness on smaller screens
+- Improved error handling in contract interactions
 
 ### Fixed
-- Fixed edge case in balance display for micro amounts
+- Resolved race condition in wallet state sync
