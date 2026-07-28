@@ -3,7 +3,7 @@
 ## [Unreleased] - 2026-07-28
 
 ### Changed
-- Optimized RPC batch requests for lower latency
+- Refactored wallet connection flow for MiniPay
 
 ### Fixed
-- Fixed edge case in balance display for micro amounts
+- Fixed decimal formatting for cUSD amounts
