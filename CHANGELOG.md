@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased] - 2026-07-28
+## [Unreleased] - 2026-07-29
 
 ### Changed
 - Improved error handling in contract interactions
