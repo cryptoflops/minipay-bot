@@ -3,7 +3,7 @@
 ## [Unreleased] - 2026-07-29
 
 ### Changed
-- Improved error handling in contract interactions
+- Updated dependencies to latest stable versions
 
 ### Fixed
-- Corrected gas estimation for Celo L2 calls
+- Fixed decimal formatting for cUSD amounts
