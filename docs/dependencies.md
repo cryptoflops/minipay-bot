@@ -3,10 +3,10 @@
 Updated: 2026-07-30
 
 ## Core
-- ethers: ^6.13.0 (Celo L2 compatible)
-- viem: ^2.12.0 (alternative provider)
+- ethers: ^6.11.0 (Celo L2 compatible)
+- viem: ^2.10.1 (alternative provider)
 
 ## Notes
-- Pinned ethers for Celo fee currency compatibility
+- Using viem for read-only calls, ethers for writes
 
-Audit: 24b74mqs
+Audit: bp67cwt1
