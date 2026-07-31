@@ -1,9 +1,9 @@
 # Changelog
 
-## [Unreleased] - 2026-07-29
+## [Unreleased] - 2026-07-31
 
 ### Changed
-- Updated dependencies to latest stable versions
+- Enhanced mobile responsiveness on smaller screens
 
 ### Fixed
-- Fixed decimal formatting for cUSD amounts
+- Resolved race condition in wallet state sync
